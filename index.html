@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Index</title>
+<link rel="stylesheet" type="text/css" href="index.css">
+<style type="text/css">
+
+.drag{
+position:relative;
+cursor:hand;
+z-index: 100;
+}
+
+</style>
+
+<script type="text/javascript">
+
+/***********************************************
+* Drag and Drop Script: (c) Dynamic Drive (http://www.dynamicdrive.com)
+* Please keep this notice intact
+* Visit http://www.dynamicdrive.com/ for this script and 100s more.
+***********************************************/
+
+var dragobject={
+z: 0, x: 0, y: 0, offsetx : null, offsety : null, targetobj : null, dragapproved : 0,
+initialize:function(){
+document.onmousedown=this.drag
+document.onmouseup=function(){this.dragapproved=0}
+},
+drag:function(e){
+var evtobj=window.event? window.event : e
+this.targetobj=window.event? event.srcElement : e.target
+if (this.targetobj.className=="drag"){
+this.dragapproved=1
+if (isNaN(parseInt(this.targetobj.style.left))){this.targetobj.style.left=0}
+if (isNaN(parseInt(this.targetobj.style.top))){this.targetobj.style.top=0}
+this.offsetx=parseInt(this.targetobj.style.left)
+this.offsety=parseInt(this.targetobj.style.top)
+this.x=evtobj.clientX
+this.y=evtobj.clientY
+if (evtobj.preventDefault)
+evtobj.preventDefault()
+document.onmousemove=dragobject.moveit
+}
+},
+moveit:function(e){
+var evtobj=window.event? window.event : e
+if (this.dragapproved==1){
+this.targetobj.style.left=this.offsetx+evtobj.clientX-this.x+"px"
+this.targetobj.style.top=this.offsety+evtobj.clientY-this.y+"px"
+return false
+}
+}
+}
+
+dragobject.initialize()
+
+</script> <br>
+<link rel="stylesheet" type="text/css" media="screen" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.css" />
+<style type="text/css">
+    a.fancybox img {
+        border: none;
+    } 
+</style>
+</head>
+<body>
+<embed src="scuba_sounds.mp3" loop="true" hidden="true" height="0" width="0"> </embed>
+<marquee behavior="scroll" direction="right" scrollamount="6">
+<img class="fancybox" src="diver.gif" width="100" height="100" alt="Diver">
+</marquee> <br>
+<marquee behavior="scroll" direction="left" scrollamount="8">
+<img class="fancybox" src="clownfish.gif" width="60" height="60" alt="Clownfish">
+</marquee> 
+<br>
+<marquee behavior="scroll" direction="right" scrollamount="20">
+<img src="shark.gif" width="140" height="120" alt="Shark">
+</marquee> <br>
+<marquee behavior="scroll" direction="right" scrollamount="7">
+<img src="goldfish.gif" width="35" height="35" alt="Goldfish">
+</marquee> <br>
+<marquee behavior="scroll" direction="right" scrollamount="6">
+<img src="dolphin.gif" width="100" height="80" alt="Dolphin">
+</marquee> <br>
+<marquee behavior="scroll" direction="left" scrollamount="2">
+<img src="schooloffish.gif" width="70" height="70" alt="School of Fish">
+</marquee> <br>
+<marquee behavior="scroll" direction="left" scrollamount="1">
+<img src="betta.gif" width="60" height="60" alt="Betta Fish">
+</marquee> <br>
+<marquee behavior="alternate" scrollamount="9">
+<img src="angelfish1.gif" width="75" height="75" alt="School of Angelfish">
+</marquee> <br>
+<marquee direction="down" width="250" height="200" behavior="alternate">
+  <marquee behavior="alternate" scrollamount="5">
+<img src="jellyfish.gif" width="50" height="50" alt="Jellyfish">
+</marquee> </marquee> <br>
+<marquee behavior="alternate" scrollamount="8">
+<img src="angelfish2.gif" width="55" height="55" alt="Angelfish">
+</marquee> <br>
+<marquee behavior="alternate" scrollamount="7">
+<img src="angelfish3.gif" width="40" height="40" alt="French Angelfish">
+</marquee> <br>
+<marquee direction="down" width="250" height="200" behavior="alternate">
+  <marquee behavior="alternate" scrollamount="4">
+<img src="turtle.gif" width="85" height="85" alt="Turtle">
+</marquee> </marquee>
+<br>
+<marquee behavior="alternate" direction="left" scrollamount="2">
+<img src="manatee.gif" width="115" height="95" alt="Manatee">
+</marquee> <br>
+<img src="octopus.gif" class="drag" style="width:120px; height:120px;"> <br>
+<img src="shell1.gif" class="drag" style="width:70px; height:45px;"> <br>
+<img src="shell2.gif" class="drag" style="width:80px; height:55px;"> <br>
+<div id="background-wrap">
+    <div class="bubble x1"></div>
+    <div class="bubble x2"></div>
+    <div class="bubble x3"></div>
+    <div class="bubble x4"></div>
+    <div class="bubble x5"></div>
+    <div class="bubble x6"></div>
+    <div class="bubble x7"></div>
+    <div class="bubble x8"></div>
+    <div class="bubble x9"></div>
+    <div class="bubble x10"></div>
+</div>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.pack.min.js"></script>
+<script type="text/javascript">
+    $(function($){
+        var addToAll = true;
+        var gallery = true;
+        var titlePosition = 'over';
+        $(addToAll ? 'img' : 'img.fancybox').each(function(){
+            var $this = $(this);
+            var title = $this.attr('title');
+            var src = $this.attr('data-big') || $this.attr('src');
+            var a = $('<a href="#" class="fancybox"></a>').attr('href', src).attr('title', title);
+            $this.wrap(a);
+        });
+        if (gallery)
+            $('a.fancybox').attr('rel', 'fancyboxgallery');
+        $('a.fancybox').fancybox({
+            titlePosition: titlePosition
+        });
+    });
+    $.noConflict();
+</script>
+</body>
+</html>
